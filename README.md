@@ -19,7 +19,7 @@ cAlertTest.alert();
 <script src="/js/cAlert.js"></script>
 <link href="/css/style.css" rel="stylesheet"/>
 ```
-*This depends on where you place the files and if you rename them to something obviously.*
+*This depends on where you place the files and if you rename them to something, obviously.*
 
 Different styling
 ======
