@@ -14,6 +14,13 @@ var cAlertTest = new cAlert("This is a cAlert box that is very clean and simple!
 cAlertTest.alert();
 ```
 
+**HTML:**
+```html
+<script src="/js/cAlert.js"></script>
+<link href="/css/style.css" rel="stylesheet"/>
+```
+*This depends on where you place the files and if you rename them to something obviously.*
+
 Different styling
 ======
 Example:
