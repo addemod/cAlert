@@ -8,6 +8,8 @@
 	min-height: 55px;
 	cursor: pointer;
 	font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+	
+	z-index: 1000;
 }
 
 .cAlert-default {
