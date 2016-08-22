@@ -1,4 +1,4 @@
-![gif_top](https://i.gyazo.com/fd3dc36786e72c5450eef9414bc12937.gif "The Alert!")
+![gif_top](https://i.gyazo.com/bfe03fd9cfad0144d1ff4a24391f186d.gif "The Alerts!")
 
 cAlert
 ======
@@ -39,9 +39,9 @@ Icons?
 Icons from [IcoMoon](https://icomoon.io/) are included.
 Usage:
 ```html
-<i class="icon-info"></i>
+<i class="icon-github"></i>
 ```
-Result: ![icon_result](https://i.gyazo.com/0cf570a1b35dc8a5860964d98482a89c.png "Icon usage result")
+Result: ![icon_result](https://i.gyazo.com/6f3bbf18cd56a32a8d36620df8b63be0.png "Icon usage result")
 
 Events
 ======
