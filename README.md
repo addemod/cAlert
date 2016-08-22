@@ -1,3 +1,5 @@
+![gif_top](https://i.gyazo.com/fd3dc36786e72c5450eef9414bc12937.gif "The Alert!")
+
 cAlert
 ======
 A simple JS alert system that is easy to setup and use!
