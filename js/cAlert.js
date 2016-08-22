@@ -17,7 +17,7 @@ var cAlert = function(body, type, icon = "bubble2", time = 2) {
 	this.id = generateUUID();
 	
 	// Create the element
-	this.elem = $('<div class="cAlert cAlert-'+this.type+'" type="alert" id="'+this.id+'" style="display: none"><i class="cIcon icon-'+this.icon+'" type="alert-type-icon"></i><div class="cAlert-content"><p>'+this.body+'</p></div></div>');
+	this.elem = $('<div class="cAlert cAlert-'+this.type+'" type="alert" id="'+this.id+'" style="display: none"><i class="cIcon icon-'+this.icon+'" type="alert-type-icon"></i><div class="cAlert-content"><p>'+this.body+'</p></div><div class="cAlert-queue-count" id="qc-'+this.id+'"><span class="queue-count">0</span></div></div>');
 	
 	// Stores the ID of the timeout to dismiss the alert
 	this.hideTimeout = undefined;
@@ -34,9 +34,12 @@ var cAlert = function(body, type, icon = "bubble2", time = 2) {
 		
 		// Append the alert to the body, hidden
 		$("body").append(this.elem);
-
+		
+		// Set the position of the alert queue count box (The alert box height + 2, the border is 2px)
+		$("#qc-" + this.id).css("top", this.elem.height() + 2);
+		
 		// Set the alert visible and put it outside the screen
-		this.elem.css("display", "").css("top", 0 - this.elem.height());
+		this.elem.css("display", "").css("top", 0 - this.elem.height() - $("#qc-" + this.id).height() - 20);
 
 		// Move the alert into the screen by moving it down from it's first position
 		$("#" + this.id).stop().animate({top:0}, 500, this.onalertdone);
@@ -85,7 +88,7 @@ var cAlert = function(body, type, icon = "bubble2", time = 2) {
 	
 		// Make the alert go up and then we remove it
 		// We also call the ondismissed function
-		this.elem.stop().animate({top: 0 - this.elem.height()}, 500, function() { _this.ondismissed(); _this.remove(); });
+		this.elem.stop().animate({top: 0 - this.elem.height() - $("#qc-" + this.id).height() - 20}, 500, function() { _this.ondismissed(); _this.remove(); });
 	}
 
 	this.remove = function() {
