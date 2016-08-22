@@ -81,13 +81,13 @@ Example:
 var cAlertTest = new cAlert("This is a cAlert box that is very clean and simple!<p>It's also responsive on all screens! Isn't that just awesome? <i class='icon-accessibility'></i>", "danger", "blocked", 2);
 ```
 
-* ```javascript cAlert.alert()``` - Show the alert (Not recommended. Instead, use ***queue()***)
-* ```javascript cAlert.queue()``` - Queue the alert, it will be displayed when it's the first in the queue (Recommended use)
-* ```javascript cAlert.dismiss()``` - Dismiss the alert manually (animation)
-* ```javascript cAlert.remove()``` - Remove the alert manually (no animation)
-* ```javascript cAlert.onalert = function() {}``` - Called on cAlert.alert()
-* ```javascript cAlert.onalertdone = function() {}``` - Called when the show animation is done
-* ```javascript cAlert.ondismiss = function() {}``` - Called when the alert is being dismissed
-* ```javascript cAlert.ondismissed = function() {}``` - Called when the dismiss animation is done
-* ```javascript cAlert.onclick = function() {}``` - Called when the alert box is clicked
-* ```javascript cAlert.onremove = function() {}``` - Called when the alert box is removed
+* ```javascript cAlert.alert() ``` - Show the alert (Not recommended. Instead, use ***queue()***)
+* ```javascript cAlert.queue() ``` - Queue the alert, it will be displayed when it's the first in the queue (Recommended use)
+* ```javascript cAlert.dismiss() ``` - Dismiss the alert manually (animation)
+* ```javascript cAlert.remove() ``` - Remove the alert manually (no animation)
+* ```javascript cAlert.onalert = function() {} ``` - Called on cAlert.alert()
+* ```javascript cAlert.onalertdone = function() {} ``` - Called when the show animation is done
+* ```javascript cAlert.ondismiss = function() {} ``` - Called when the alert is being dismissed
+* ```javascript cAlert.ondismissed = function() {} ``` - Called when the dismiss animation is done
+* ```javascript cAlert.onclick = function() {} ``` - Called when the alert box is clicked
+* ```javascript cAlert.onremove = function() {} ``` - Called when the alert box is removed
