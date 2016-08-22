@@ -1,34 +1,39 @@
+var alertQueue = [];
+var alerts = [];
+
 var cAlert = function(body, type, icon = "bubble2", time = 2) {
-	this.type = type;
 	this.body = body;
-	this.time = time;
+	this.type = type;
 	this.icon = icon;
-
-	this.id = generateUUID();
-	this.elem = undefined;
-	this.hideTimeout = undefined;
-
-
-	this.alert = function() {
-		// _this is to refer to the correct cAlert class, we can't access "this" inside the function inside setTimeout
-		var _this = this;
+	this.time = time;
+	
+	// Add the alert to the list of all alerts
+	alerts.push(this);
+	
+	// _this is to refer to the correct cAlert class, we can't access "this" inside a private function
+	var _this = this;
 		
+	// Generate a random ID for the alert
+	this.id = generateUUID();
+	
+	// Create the element
+	this.elem = $('<div class="cAlert cAlert-'+this.type+'" type="alert" id="'+this.id+'" style="display: none"><i class="cIcon icon-'+this.icon+'" type="alert-type-icon"></i><div class="cAlert-content"><p>'+this.body+'</p></div></div>');
+	
+	// Stores the ID of the timeout to dismiss the alert
+	this.hideTimeout = undefined;
+	
+	// Set click event
+	this.elem.on("click", function() { _this.click(); });
+	
+	this.alert = function() {
 		// Call onalert function
 		if(this.onalert() === false)
 		{
 			return;
 		}
 		
-		var icon_html = "";
-		if(this.icon !== "")
-		{
-			icon_html = '<i class="cIcon icon-'+this.icon+'" type="alert-type-icon"></i>'
-		}
-
 		// Append the alert to the body, hidden
-		$("body").append('<div class="cAlert cAlert-'+this.type+'" type="alert" id="'+this.id+'" style="display: none">'+icon_html+'<div class="cAlert-content"><p>'+this.body+'</p></div></div>');
-		// Store the element of the alert
-		this.elem = $("#" + this.id);
+		$("body").append(this.elem);
 
 		// Set the alert visible and put it outside the screen
 		this.elem.css("display", "").css("top", 0 - this.elem.height());
@@ -42,11 +47,45 @@ var cAlert = function(body, type, icon = "bubble2", time = 2) {
 		{
 			hideTimeout = setTimeout(function () { _this.dismiss() }, this.time * 1000);
 		}
-
-		// Set onclick event
-		this.elem.click(function() { _this.click(); });
 	};
 	
+	this.queue = function() {
+		// Check if the current alert is in the queue already
+		var isInQueue = false;
+		for(anAlert of alertQueue)
+		{
+			if(anAlert === this)
+			{
+				isInQueue = true;
+				break;
+			}
+		}
+		
+		// If it's not in the queue we add the alert to the queue.
+		if(!isInQueue)
+		{
+			// Add the alert to the queue
+			alertQueue.push(this);
+		}
+		
+		if(alertQueue[0] === this)
+		{
+			// Launch alert on the alert on index 0
+			alertQueue[0].alert();
+			// When the alert is removed
+			alertQueue[0].onremove = function() { 
+				// Remove the alert on index 0
+				alertQueue.splice(0, 1);
+				// If we have another alert in queue (on index 0 after we removed the first one)
+				if(alertQueue[0])
+				{
+					// Queue that alert
+					alertQueue[0].queue();
+				}
+			};
+		}
+		
+	};
 
 	this.dismiss = function() {
 		var _this = this;
@@ -103,6 +142,18 @@ var cAlert = function(body, type, icon = "bubble2", time = 2) {
 	this.onremove = function() {};
 }
 
+function getAlertById(id)
+{
+	for(anAlert of alerts)
+	{
+		if(anAlert.id === id)
+		{
+			return anAlert;
+		}
+	}
+	
+	return undefined;
+}
 
 function generateUUID() {
     var d = new Date().getTime();
