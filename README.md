@@ -13,7 +13,7 @@ Usage
 **JavaScript:**
 ```javascript
 var cAlertTest = new cAlert("This is a cAlert box that is very clean and simple!<p>It's also responsive on all screens! Isn't that just awesome? <i class='icon-accessibility'></i>", "danger", "blocked", 2);
-cAlertTest.alert();
+cAlertTest.queue();
 ```
 
 **HTML:**
@@ -81,7 +81,8 @@ Example:
 var cAlertTest = new cAlert("This is a cAlert box that is very clean and simple!<p>It's also responsive on all screens! Isn't that just awesome? <i class='icon-accessibility'></i>", "danger", "blocked", 2);
 ```
 
-* ```javascript cAlert.alert()``` - Show the alert
+* ```javascript cAlert.alert()``` - Show the alert (Not recommended. Instead, use ***queue()***)
+* ```javascript cAlert.queue()``` - Queue the alert, it will be displayed when it's the first in the queue (Recommended use)
 * ```javascript cAlert.dismiss()``` - Dismiss the alert manually (animation)
 * ```javascript cAlert.remove()``` - Remove the alert manually (no animation)
 * ```javascript cAlert.onalert = function() {}``` - Called on cAlert.alert()
